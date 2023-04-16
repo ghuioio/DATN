@@ -14,7 +14,7 @@ coinList = ['BTC','ETH','USDT', 'BNB','USDC','XRP', 'ADA', 'DOGE', 'STETH', 'MAT
             'XAUT','XRD','AGIX','CUSDC','ZIL','ENJ','RNDR','RUNE','INJ','RETH'
             ]  
 # Set the query parameters
-max_tweets = 1000
+max_tweets = 1
 
 
 # Open a CSV file to store the tweets

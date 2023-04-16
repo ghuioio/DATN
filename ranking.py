@@ -21,7 +21,7 @@ weights = {
 }
 
 # Calculate the score
-normalized_data['score'] = (normalized_data['followersCount'] * weights['followersCount'] +
+normalized_data['score'] = (normalized_data['followerCount'] * weights['followerCount'] +
                             normalized_data['likeCount'] * weights['likeCount'] +
                             normalized_data['quoteCount'] * weights['quoteCount'] +
                             normalized_data['replyCount'] * weights['replyCount'] +
