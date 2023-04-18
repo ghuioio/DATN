@@ -6,7 +6,7 @@ from sympy import Id
 from selenium.common.exceptions import NoSuchElementException
 import os, shutil
 import snscrape.modules.twitter as sntwitter
-import sys
+import sys, json
 chrome_options = Options()
 chrome_options.add_argument("headless")
 chrome_options.add_argument("--window-size=1920x1080")
@@ -17,10 +17,8 @@ webdriver_path = "selenium/chromedriver.exe"
 driver = webdriver.Chrome(executable_path=webdriver_path,options=chrome_options)
 
 def recrawl(tweet_url):
-    # Navigate to the specific tweet URL
     # tweet_url = "https://twitter.com/mohamad19290333/status/1644348169604440064"
     driver.get(tweet_url)
-    # Wait for the page to load
     time.sleep(5)
     try:
         retweets_count_element = driver.find_element_by_xpath("/html/body/div[1]/div/div/div[2]/main/div/div/div/div/div/section/div/div/div[1]/div/div/article/div/div/div[3]/div[6]/div[2]/a/div/span/span/span")
@@ -41,29 +39,28 @@ def recrawl(tweet_url):
         likes_count = 0
     print(f"The tweet has {likes_count} likes.")
     
-    
-
     # Close the WebDriver
     driver.quit()
     return likes_count, quotes_count, retweets_count
 
-# Function to get the username from a tweet URL
-def extract_username_from_url(url):
-    username = url.split('/')[3]
-    return username
-
-# Function to get the follower count of a user
-def get_follower_count(username):
-    user = sntwitter.TwitterSearchScraper('from:{}'.format(username)).get_items()
-    print(user)
+def extract_profile_url(tweet_url):
+    parts = tweet_url.split('/')
+    if len(parts) >= 4:
+        return f"https://{parts[2]}/{parts[3]}"
+    else:
+        return None
+    
+def get_user_data(tweet_url):
+    username = tweet_url.split('/')[3]
+    for i, tweet in enumerate(sntwitter.TwitterSearchScraper(username).get_items()):
+        print(tweet.user.url)
+        if tweet.user.url == extract_profile_url(tweet_url):
+            return tweet.user.followersCount
+            break 
 
 # Main function
 if __name__ == "__main__":
-    # Replace this example URL with the actual tweet URL
-    tweet_url = "https://twitter.com/traderistanbul/status/1644341183215181829"
-    username = extract_username_from_url(tweet_url)
-    print(username)
-    get_follower_count(username)
+    print(get_user_data('https://twitter.com/Hroshid746/status/1644340708424450048'))
 
 
 
