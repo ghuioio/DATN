@@ -6,6 +6,12 @@ client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = client["crypto_db"]
 tweets_collection = db["crypto_tweets"]
 
+def update_document(unique_id, new_data):
+    tweets_collection.update_one(
+        {"tweet_id": unique_id},
+        {"$set": new_data}
+    )
+
 # Import CSV data into MongoDB
 with open('100coin100tweets.csv', 'r', encoding='utf-8') as csvfile:
     csv_reader = csv.DictReader(csvfile)

@@ -18,7 +18,7 @@ max_tweets = 1
 
 
 # Open a CSV file to store the tweets
-with open('100coin1000tweets.csv', 'w', newline='', encoding='utf-8') as file:
+with open('100coin1tweets.csv', 'w', newline='', encoding='utf-8') as file:
     csv_writer = csv.writer(file)
     csv_writer.writerow(["name","id", "url", "date", "content", "userId", "followerCount", "likeCount", "quoteCount", "replyCount", "retweetCount"])
 

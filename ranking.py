@@ -32,4 +32,5 @@ sorted_data = normalized_data.sort_values(by='score', ascending=False)
 def get_ranking(followerCount, likeCount, quoteCount, replyCount, retweetCount):
     return weights['followerCount'] * followerCount + weights['likeCount'] * likeCount + weights['quoteCount'] * quoteCount + weights['replyCount'] * replyCount + weights['retweetCount'] * retweetCount
 # Display the top-ranked tweets
+
 print(sorted_data.head(10))
