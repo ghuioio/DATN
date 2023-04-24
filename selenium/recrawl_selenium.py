@@ -27,7 +27,7 @@ def recrawl(tweet_url):
         retweets_count = 0
     print(f"The tweet has {retweets_count} retweets.")
     try:
-        quotes_count_element = driver.find_element_by_xpath("/html/body/div[1]/div/div/div[2]/main/div/div/div/div/div/section/div/div/div[1]/div/div/article/div/div/div[3]/div[6]/div[3]/a/div/span/span/span")
+        quotes_count_element = driver.find_element_by_xpath("/html/body/div[1]/div/div/div[2]/main/div/div/div/div/div/section/div/div/div[1]/div/div/article/div/div/div[3]/div[6]/div[2]/a/div/span/span/span")
         quotes_count = quotes_count_element.text if quotes_count_element else 0
     except NoSuchElementException:
         quotes_count = 0
@@ -60,7 +60,7 @@ def get_user_data(tweet_url):
 
 # Main function
 if __name__ == "__main__":
-    print(get_user_data('https://twitter.com/Hroshid746/status/1644340708424450048'))
+    print(recrawl('https://twitter.com/hxD9585/status/1649323527252877312'))
 
 
 

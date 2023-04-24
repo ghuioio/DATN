@@ -17,12 +17,14 @@ tweets_collection = db["crypto_tweets"]
 tweets = list(tweets_collection.find())
 
 # Send the data to RabbitMQ
+tweet_count = 0
 for tweet in tweets:
+    if tweet_count >= 100:  # Limit to 100 tweets
+        break
+    tweet_count += 1
     tweet_json = json.dumps(tweet, default=str)
     channel.basic_publish(exchange='', routing_key='crypto_tweets_queue', body=tweet_json)
 
 # Close the connection
 connection.close()
 
-# Sleep for 1 day before re-crawling
-time.sleep(60 * 60 * 24)

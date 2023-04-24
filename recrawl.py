@@ -16,4 +16,4 @@ if __name__ == "__main__":
     # Load the CSV file
     data = pd.read_csv('100coin100tweets.csv', encoding='utf-8')
     print(data.iloc[0].url)
-    print(recrawl_user_data(data.iloc[0].url))
+    print(recrawl_user_data(data.iloc[350].url))
