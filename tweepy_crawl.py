@@ -61,8 +61,8 @@ coinList = ['BTC','ETH','USDT', 'BNB','USDC','XRP', 'ADA', 'DOGE', 'STETH', 'MAT
             'XAUT','XRD','AGIX','CUSDC','ZIL','ENJ','RNDR','RUNE','INJ','RETH'
             ]
 tweet_count = 100
-output_filename = "tweepytweets.csv"
-batch_size = 5
+output_filename = "100coins100tweets.csv"
+batch_size = 9
 
 write_header_to_csv(output_filename)
 
@@ -75,7 +75,7 @@ for i in range(0, len(coinList), batch_size):
         append_tweets_to_csv(coin_tweets, output_filename)
 
     if i + batch_size < len(coinList):
-        print("Waiting for 5 minutes before continuing...")
-        time.sleep(300)
+        print("Waiting for 15 minutes before continuing...")
+        time.sleep(60*15)
 
 print(f"Data written to {output_filename}")
