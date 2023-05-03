@@ -61,7 +61,7 @@ coinList = ['BTC','ETH','USDT', 'BNB','USDC','XRP', 'ADA', 'DOGE', 'STETH', 'MAT
             'XAUT','XRD','AGIX','CUSDC','ZIL','ENJ','RNDR','RUNE','INJ','RETH'
             ]
 tweet_count = 100
-output_filename = "100coins100tweets.csv"
+output_filename = "100coins100_0305tweets.csv"
 batch_size = 9
 
 write_header_to_csv(output_filename)
